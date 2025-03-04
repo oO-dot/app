@@ -60,17 +60,4 @@ public class PeopleController {
     public ResponseEntity<List<PeopleDTO>> findAll() {
         return ResponseEntity.ok(peopleMapper.toDTOList(peopleService.findAll()));
     }
-
-    @ExceptionHandler
-    public ResponseEntity<String> handle(InternalServerErrorException exception) {
-        log.error(exception.getMessage(), exception);
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<String> handle(NotFoundException exception) {
-        log.error(exception.getMessage(), exception);
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
 }
